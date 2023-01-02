@@ -35,42 +35,29 @@ export class ThirdPartyImporter {
 
         try {
             const conn = await connect();
-
-     /**
-    * leer data del excel
-    * 
-    */     
-            const path =process.env.DIRECTORYTOLOAD
-            //@ts-ignore    
-            const workBook = XLSX.readFile(path)
-            const workBookSheets = workBook.SheetNames;
-
-            const sheet = workBookSheets[0]
-            const dataExcel = XLSX.utils.sheet_to_json(workBook.Sheets[sheet]);
-
+            const dataFromJS: [] = req.body
     /**
      * Insertar la data en BD
      * 
     **/
 
-            const third = dataExcel
+            const third = dataFromJS
 
             third.forEach(async (item, index) => {
-                let number =index + 1
+                let number = index + 1
                 await conn.query(`INSERT INTO terceros SET?`, [item])
                 console.log(`${number} added successfully !!`)
-               
+
             })
 
             if (third) {
 
                 return res.json({
                     message: "Successful loading",
-                    data: dataExcel,
-                   
+                    data: third,
+
                 })
             }
-
 
         } catch (error) {
             console.log(error)

@@ -5,7 +5,7 @@ const router = Router();
 
 
 router.post('/',ThirdPartyImporter.sendData)
-router.get('/remove-thirds', ThirdPartyImporter.deleteThird)
+router.delete('/remove-thirds', ThirdPartyImporter.deleteThird)
 
 
 export default router;
