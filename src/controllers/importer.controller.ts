@@ -36,10 +36,10 @@ export class ThirdPartyImporter {
         try {
             const conn = await connect();
             const dataFromJS: [] = req.body
-    /**
-     * Insertar la data en BD
-     * 
-    **/
+            /**
+             * Insertar la data en BD
+             * 
+            **/
 
             const third = dataFromJS
 
@@ -47,14 +47,14 @@ export class ThirdPartyImporter {
                 let number = index + 1
                 await conn.query(`INSERT INTO terceros SET?`, [item])
                 console.log(`${number} added successfully !!`)
-
             })
-
+            
             if (third) {
 
                 return res.json({
                     message: "Successful loading",
                     data: third,
+                    number: third.length
 
                 })
             }
