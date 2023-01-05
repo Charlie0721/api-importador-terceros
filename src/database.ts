@@ -12,6 +12,7 @@ export async function connect() {
         connectTimeout:3000000,
         queueLimit:0
     });
+    
     return connection;
    
 }

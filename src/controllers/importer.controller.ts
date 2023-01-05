@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import XLSX from 'xlsx'
 import { connect } from '../database'
 export class ThirdPartyImporter {
 
@@ -42,13 +41,13 @@ export class ThirdPartyImporter {
             **/
 
             const third = dataFromJS
-
             third.forEach(async (item, index) => {
                 let number = index + 1
                 await conn.query(`INSERT INTO terceros SET?`, [item])
                 console.log(`${number} added successfully !!`)
+
             })
-            
+
             if (third) {
 
                 return res.json({
@@ -60,6 +59,8 @@ export class ThirdPartyImporter {
             }
 
         } catch (error) {
+
+
             console.log(error)
             return res.status(500).json({ error: error })
         }
